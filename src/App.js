@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { fetchWeather } from './service/weatherApi';
+import './App.css';
+
 function App() {
   return (
     <div>
