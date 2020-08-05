@@ -1,14 +1,13 @@
 import React from 'react';
 
-import { fetchWeather } from './service/weatherApi';
-import './App.css';
+import Search from './components/search';
+
+import './global.css';
 
 function App() {
   return (
-    <div>
-      <h1>
-        Hello
-      </h1>
+    <div className="app-container">
+      <Search />
     </div>
   );
 }
