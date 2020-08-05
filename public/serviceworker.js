@@ -4,8 +4,8 @@ const urlsToCache = ['index.html', 'offline.html'];
 const self = this;
 
 // Install SW
-self.addEventListener('install', (e) => {
-  e.waitUntil(
+self.addEventListener('install', (event) => {
+  event.waitUntil(
     caches.open(CACHE_NAME)
         .then((cache) => {
           console.log('Opened cache');
@@ -15,22 +15,22 @@ self.addEventListener('install', (e) => {
   )
 });
 // Listen  for requests
-self.addEventListener('fetch', (e) => {
-  e.respondWidth(
-    caches.match(e.request)
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
         .then(() => {
-          return fetch(e.request)
+          return fetch(event.request)
               .catch(() => caches.match('offline.html'))
         })
   )
 });
 // Active the SW
-self.addEventListener('active', (e) => {
+self.addEventListener('activate', (event) => {
   const cacheWhitelist = [];
 
   cacheWhitelist.push(CACHE_NAME);
 
-  e.waitUntil(
+  event.waitUntil(
     caches.keys().then((cacheNames) => Promise.all(
       cacheNames.map((cacheName) => {
         if(!cacheWhitelist.includes(cacheName)) {
