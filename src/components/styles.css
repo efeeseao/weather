@@ -64,6 +64,7 @@ p {
 @media only screen and (max-width: 600px) {
   .search {
     padding: 20px 15%;
+    width: 100%;
   }
 
   .city {
